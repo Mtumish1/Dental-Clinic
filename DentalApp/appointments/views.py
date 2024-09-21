@@ -1,5 +1,5 @@
 from rest_framework import generics
-from .models import Service, Appointment
+from .models import Service, Appointment, Patient 
 from .serializers import ServiceSerializer, AppointmentSerializer
 
 # List all available services
