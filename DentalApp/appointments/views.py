@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.conf import settings
 import requests
+from .sms_service import send_appointment_sms
 
 
 
@@ -16,10 +17,28 @@ class ServiceListView(generics.ListAPIView):
 
 # Create a new appointment
 class AppointmentCreateView(generics.CreateAPIView):
+    queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
     def perform_create(self, serializer):
-        serializer.save(patient=self.request.user) # Assign the logged-in user as the patient for the appointment
+        appointment = serializer.save()  # Save the appointment
+
+        # Retrieve patient and appointment details
+        patient = appointment.patient
+        service = appointment.service
+        appointment_date = appointment.appointment_date
+        appointment_time = appointment.appointment_time
+        checkin_code = appointment.checkin_code
+
+        # Send SMS to the patient
+        send_appointment_sms(
+            phone_number=patient.phone_number,
+            service_name=service.name,
+            appointment_date=appointment_date,
+            appointment_time=appointment_time,
+            checkin_code=checkin_code
+        )
+
 
 # View a patient's appointments
 class PatientAppointmentListView(generics.ListAPIView):

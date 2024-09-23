@@ -39,8 +39,10 @@ AUTH0_CLIENT_SECRET = os.getenv('AUTH0_CLIENT_SECRET')
 AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
 
 
-print(AUTH0_CLIENT_ID)
-print(AUTH0_DOMAIN)
+#Africa's Talkig Credentials
+AFRICASTALKING_USERNAME = os.getenv('AFRICASTALKING_USERNAME')
+AFRICASTALKING_API_KEY = os.getenv('AFRICASTALKING_API_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
