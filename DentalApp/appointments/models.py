@@ -19,7 +19,7 @@ class Patient(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 class Appointment(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, related_name='appointments', on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     appointment_date = models.DateTimeField()
     appointment_time = models.TimeField()
