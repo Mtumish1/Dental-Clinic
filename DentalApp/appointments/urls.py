@@ -5,5 +5,5 @@ urlpatterns = [
     path('services/', ServiceListView.as_view(), name='service-list'),
     path('appointments/', AppointmentCreateView.as_view(), name='appointment-list'),
     path('appointments/create/', AppointmentCreateView.as_view(), name='create-appointment'),
-    path('auth/callback/', auth0_callback, name='auth0-callback')
+    path('auth/callback/', auth0_callback, name='auth0-callback'),
 ]
