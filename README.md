@@ -1,6 +1,19 @@
 # Dental Appointment Scheduling Django Microservice
 
-This project is a Patient Appointment Scheduling Microservice built using Django and Django REST Framework. It features authentication using Auth0 and Africa's Talking SMS integration to notify patients upon appointment creation.
+This project is a Patient Appointment Scheduling Microservice built with Django and Django REST Framework. It includes authentication and authorization via Auth0 and integrates with Africa's Talking SMS API to notify patients of their appointments.
+
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Authentication Setup (Auth0)](#authentication-setup-auth0)
+- [SMS Notifications (Africa's Talking)](#sms-notifications-africas-talking)
+- [API Endpoints](#api-endpoints)
+- [Running Unit Tests](#running-unit-tests)
+- [Deployment](#deployment)
+- [License](#license)
 
 ## Features
 Appointment Scheduling: Patients can schedule appointments for various dental services.
