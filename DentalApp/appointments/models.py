@@ -26,18 +26,16 @@ class Appointment(models.Model):
     status = models.CharField(max_length=20, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
 
-    # New field to store the unique alphanumeric code
+    #Variable to store the unique alphanumeric code
     checkin_code = models.CharField(max_length=8, unique=True, blank=True)
 
     def save(self, *args, **kwargs):
-        # Generate and assign check-in code if not already assigned
-        if not self.checkin_code:
+        if not self.checkin_code:        # Generate and assign check-in code if not already assigned
             self.checkin_code = self.generate_unique_code()
         super().save(*args, **kwargs)
 
     def generate_unique_code(self):
-        # Generate a random alphanumeric code of length 8
-        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))  # Generate a random alphanumeric code of length 8
 
 
     def __str__(self):

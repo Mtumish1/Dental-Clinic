@@ -8,7 +8,7 @@ sms = africastalking.SMS
 def send_appointment_sms(phone_number, service_name, appointment_date, appointment_time, checkin_code):
     message = (
         f"Your appointment for {service_name} is confirmed on {appointment_date} at {appointment_time}. "
-        f"Your check-in code is: {checkin_code}. Please present this code during your visit."
+        f"Your check-in code is: {checkin_code}. Please use this code for Mpesa payments."
     )
     try:
         response = sms.send(message, [phone_number])
