@@ -65,7 +65,7 @@ Before you begin, ensure you have the following installed:
 
    ```
 
-4. **Create a .env file in the root directory and add the following environment variables**:
+4. **Create a `.env` file in the root directory and add the following environment variables**:
 
    ```bash
    SECRET_KEY=your_django_secret_key
@@ -122,12 +122,12 @@ SOCIALACCOUNT_PROVIDERS = {
 1. Sign up for an Africa's Talking account and get your API key and username.
 2. Ensure the following environment variables are set in your .env file:
 
-````bash
+```bash
 AFRICAS_TALKING_API_KEY=your_africas_talking_api_key
-AFRICAS_TALKING_USERNAME=your_africas_talking_username ```
+AFRICAS_TALKING_USERNAME=your_africas_talking_username
+```
 
-The SMS notifications are triggered in the ``send_appointment_sms`` function located in ``sms_service.py``.
-````
+The SMS notifications are triggered in the `send_appointment_sms` function located in `sms_service.py`.
 
 ## API Endpoints
 
