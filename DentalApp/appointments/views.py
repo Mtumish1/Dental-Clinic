@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+
 from .models import Service, Appointment, Patient 
 from .serializers import ServiceSerializer, AppointmentSerializer
 from django.shortcuts import redirect
@@ -43,9 +45,15 @@ class AppointmentCreateView(generics.CreateAPIView):
 # View a patient's appointments
 class PatientAppointmentListView(generics.ListAPIView):
     serializer_class = AppointmentSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Appointment.objects.filter(patient=self.request.user)
+        patient_id = self.kwargs.get('patient_id')
+
+        if not self.request.user.is_staff and self.request.user.id != int(patient_id):
+            raise PermissionDenied("You are not allowed to view this patient's appointments.")
+            
+        return Appointment.objects.filter(patient__id=patient_id)
 
 
 

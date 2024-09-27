@@ -11,20 +11,14 @@ class PatientSerializer(serializers.ModelSerializer):
         model = Patient
         fields = '__all__'
 
-class AppointmentSerializer(serializers.ModelSerializer):
-    patient = PatientSerializer()
-    service = ServiceSerializer()
+class AppointmentSerializer(serializers.ModelSerializer):       #Using service and patient IDs as the request payload
+    patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
+    service = serializers.PrimaryKeyRelatedField(queryset=Service.objects.all())
 
     class Meta:
         model = Appointment
         fields = '__all__'
 
     def create(self, validated_data):
-        patient_data = validated_data.pop('patient')
-        service_data = validated_data.pop('service')
-
-        patient, _ = Patient.objects.get_or_create(**patient_data)
-        service = Service.objects.get(id=service_data['id'])
-
-        appointment = Appointment.objects.create(patient=patient, service=service, **validated_data)
+        appointment = Appointment.objects.create(**validated_data)
         return appointment
